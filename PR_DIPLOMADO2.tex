@@ -1,0 +1,2305 @@
+\documentclass[10pt,letterpaper]{beamer}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{translator}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\definecolor{links}{HTML}{2A1B81}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+%\usepackage{beamerthemesplit}
+%\usepackage{mathptmx}
+%\usepackage{chancery}
+
+%\usepackage{epsfig}
+%\usepackage{Sweave}
+
+\AtBeginSection{\frame{\sectionpage}}
+\AtBeginSubsection{\frame{\subsectionpage}}
+\newtranslation[to=spanish]{Section}{Sección}
+\newtranslation[to=spanish]{Subsection}{Subsección}
+%===================================================================================
+\usetheme{Boadilla}
+\usefonttheme{professionalfonts}
+\usecolortheme{rose}
+%\useoutertheme{infolines}
+%===================================================================================
+
+\setbeamercovered{invisible}  % Determina el comportamiento de los overlays
+
+
+%===================================================================================
+\title[Universidad Nacional de Colombia]{\textbf{DIPLOMADO\\ \emph{APLICACIÓN DE LA CIENCIA SENSORIAL EN LA INDUSTRIA}}}
+\vspace{0.5cm}
+\author[Fernando A. Velez]{\emph{Fernando Alonso Velez\\ Msc. en Estadística}}
+\date[Septiembre 2017]{Septiembre 2017}
+\institute[Dip.Ciencia Sensorial]{\emph{fvelez78@yahoo.es}}
+
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+%-----------------------------------------------------------------------------------
+%\section*{Contenido}
+%-----------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{CONTENIDO GENERAL}
+\tableofcontents[pausesections,hideallsubsections]
+\end{frame}
+%-----------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{www.schoology.com}
+\vspace{0.3cm}
+SIGN UP $\rightarrow$ STUDENT $\rightarrow$ CODIGO $\rightarrow$ DATOS PERSONALES
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.35]{Schoology}
+		\caption{Punto de encuentro}
+		\label{fig:schoology}
+	\end{figure}
+\end{frame}
+%-----------------------------------------------------------------------------------
+\section{INTRODUCCIÓN AL ANÁLISIS DE DATOS}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Naturaleza de la información en el mundo sensorial}
+En la evaluación sensorial se consideran variables de diversa naturaleza, las cuales de manera general se pueden agrupar como:\\
+\vspace{0,3cm}
+\begin{enumerate}
+	\item Cualitativas
+	\begin{enumerate}[a.]
+		\item Atributos no ordenados $\rightarrow$ \textcolor[rgb]{0,0,1}{Nominal} (Marca, Color)
+		\item Atributos ordenados	$\rightarrow$\textcolor[rgb]{0,0,1}{Ordinal} (Nivel de agrado)
+	\end{enumerate}
+	\item Cuantitativas
+	\begin{enumerate}[a.]
+		\item Discretas		$\rightarrow$ \textcolor[rgb]{0,0,1}{Ordinal} (Frecuencia de uso)
+		\item Continuas		$\rightarrow$\textcolor[rgb]{0,0,1}{Intervalo ó Razón} (Tiempos de duración )
+	\end{enumerate}
+\end{enumerate}
+\vspace{0,3cm}
+En resumen:\\
+\begin{itemize}
+	\item \textcolor[rgb]{0,0,1}{Nominal}: Nombres sin orden
+	\item \textcolor[rgb]{0,0,1}{Ordinal}: Nombres con orden o números enteros
+	\item \textcolor[rgb]{0,0,1}{Intervalo}: Medidas sin cero unico
+	\item \textcolor[rgb]{0,0,1}{Razón}: Medidas con cero unico
+\end{itemize}
+
+}
+
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Variables Estadísticas}
+	En el lenguaje estadístico se suele emplear algunos términos especificos para referirse a determinados usos de las variables\\
+	\vspace{0.3cm}
+	\begin{itemize}
+		\item Variable respuesta
+		\item Variable Dummy
+		\item Variable de clasificación
+		\item Serie
+		\item Imagenes
+		\item Audio
+	\end{itemize}
+	
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Población y Muestra}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.35,keepaspectratio=true]{./Poblacion.jpg}
+		% Poblacion.jpg: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+	\end{figure}
+	\begin{itemize}
+		\item Población de interés - Muestra Aleatoria
+		\item Población Accesible - Muestra disponible
+	\end{itemize}
+	
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{El role de la percepción}
+	\vspace{0.3cm}
+	Enfoques a considerar
+	\begin{enumerate}
+		\item Señal química
+		\item Respuesta humana
+	\end{enumerate}
+	\vspace{0.3cm}
+	De acuerdo al diseño del experimento se puede obtener información de:\\
+	\vspace{0.3cm}
+	\begin{enumerate}
+		\item \textcolor[rgb]{0,0,1}{Estructura Manifiesta}: Son aquellas compuestas por variables que son directamente observables.\\ \textcolor[rgb]{1,0,0}{Ejemplo}: Características de una manzana fresca.
+		\item \textcolor[rgb]{0,0,1}{Estructura Latente}:Es aquella expresada en términos de variables que no son observables de forma directa.\\ \textcolor[rgb]{1,0,0}{Ejemplo}: Criterio de compra.
+	\end{enumerate}
+}
+
+\section{INTRODUCCIÓN A R Y RStudio}
+% 
+% \AtBeginSection
+% {
+% \begin{frame}<beamer>
+%     \frametitle{\Large{Contenido Sección \thesection}}
+%     %
+% \end{frame}
+% }
+%-----------------------------------------------------------------------------------
+\subsection{Aspectos generales de R y RStudio}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{¿Que es R?}
+	Es un lenguaje de programación y un entorno para el cálculo estadístico y elaboración de gráficas básicas avanzadas; es una implementación de código abierto del lenguaje S (S-Plus), desarrollado por los Laboratorios Bell. Escrito inicialmente por Ross Ihaka y Robert Gentleman a mediados de los años 90.\\
+	
+	En R se puede realizar análisis hasta con 2 millones de registros y  mas de 250.000 variables. Es un programa amplio y flexible de análisis estadístico y gestión de información capaz de trabajar con datos procedentes de distintos formatos proporcionando, desde sencillos gráficos de distribuciones y estadísticos descriptivos, hasta análisis estadísticos complejos que permiten descubrir relaciones de dependencia e interdependencia, establecer clasificaciones de sujetos y variables, predecir comportamientos, etc.
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Introducción a R}
+	R es un programa libre bajo licencia GNU GPL(General Public License)
+	\begin{columns}
+		\begin{column}{7cm}
+			\begin{itemize}
+				\item Ventajas
+				\begin{enumerate}
+					\item Libre (Gratis\ldots{})
+					\item Adaptable
+					\item Liviano
+					\item Gran cantidad de ayuda disponible
+				\end{enumerate}
+				\vspace{1cm}
+				\item Desventajas
+				\begin{enumerate}
+					\item Programar (aunque realmente es una ventaja\ldots{})
+					\item Muchas cosas por aprender...
+				\end{enumerate}
+			\end{itemize}
+		\end{column}
+		\begin{column}{5cm}
+			\begin{figure}
+				\centering
+				\includegraphics[scale=0.45]{LogoR.png}\\
+			\end{figure}
+		\end{column}
+	\end{columns}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{¿onde se puede descargar?}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.35,keepaspectratio=true]{./R1.png}\\
+		\vspace{0.5cm}
+		\includegraphics[scale=0.35,keepaspectratio=true]{./R2.png}
+		% R1.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+	\end{figure}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{¿Donde se puede descargar?}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.35,keepaspectratio=true]{./R3.png}\\
+		\vspace{0.5cm}
+		\includegraphics[scale=0.35,keepaspectratio=true]{./R4.png}\\
+		\vspace{0.5cm}
+		\includegraphics[scale=0.35,keepaspectratio=true]{./R5.png}
+		% R1.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+	\end{figure}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Instalación de R}
+	\begin{enumerate}
+		\item Ingresamos al \href{https://www.r-project.org/}{https://www.r-project.org/}
+		\item Damos clic en CRAN (ver al costado izquierdo)
+		\item Escogemos un servidor desde el cual hacer la descarga
+		\item Se escoge el sistema operativo en el cual se va a instalar
+		\item Se da clic en el enlace base
+		\item Clic en Download R 3.3.1 for Windows (70 megabytes, 32/64 bit)
+		\item Esperar la descarga
+		\item Siguiente, siguiente, siguiente ...
+	\end{enumerate}
+}
+%------------------------------------------------------------------------------------
+\frame{
+	\frametitle{RStudio}
+	
+	RStudio es un ambiente de desarrollo integrado para R es decir?
+	
+	\begin{itemize}
+		\item Es un ambiente más amable, funcional y eficiente
+		\item Es menos exigente para el usuario que está iniciando
+		\item Provee ayuda y asistencia en la escritura de comandos
+	\end{itemize}
+	%\vspace{0.3cm}
+	
+	\begin{columns}
+		\begin{column}{7cm}
+			\textbf{Funcionalidades propias}
+			\begin{itemize}
+				\item R-Script
+				\item Notebooks
+				\item Documentos R-Markdown
+				\item Documentos Sweave (Latex + R)
+				\item Presentaciones R-Markdown
+				\item Shinny Web Apps
+				\item R HTML
+				\item R Presentation
+			\end{itemize}
+		\end{column}
+		\begin{column}{5cm}
+			\begin{figure}
+				\includegraphics[scale=0.65]{MenuNew.png}\\
+				\caption{Menu nuevo documento}\label{MenuNew}
+			\end{figure}
+		\end{column}
+	\end{columns}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{INSTALACIÓN DE RStudio}
+	 \begin{columns}
+		 \begin{column}{8cm}
+		 	\begin{enumerate}
+		 		\item Ingresamos a \href{https://www.rstudio.com/}{https://www.rstudio.com/}
+		 		\item Damos clic \emph{Products} $\rightarrow$ \emph{RStudio} $\rightarrow$  \emph{Desktop}
+		 		\item Clic en \textbf{Download RStudio Desktop}
+		 		\item Siguiente, siguiente, siguiente...
+		 	\end{enumerate}
+		 \end{column}
+		 \begin{column}{4cm}
+		 	\begin{figure}
+		 		\centering
+		 		\includegraphics[scale=0.35]{LogoRStudio.png}\\
+		 	\end{figure}
+		 \end{column}
+	 \end{columns}
+	
+\pause
+\begin{columns}
+	\begin{column}{5cm}
+		Tools $\longrightarrow$ Global Options
+	\end{column}
+	\begin{column}{7cm}
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.35]{G_Options}
+			\caption{Opciones Globales}
+			\label{fig:goptions}
+		\end{figure}
+	\end{column}
+\end{columns}	
+
+
+
+}
+%----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Interface de RStudio}
+	La integración que logra RStudio la logra desde cuatro ventanas
+	\vspace{1cm}
+	\begin{itemize}
+		\item \textbf{Consola}: Ejecución de comandos
+		\item \textbf{Scripts}: Desarrollo de programas, R-Markdown, Documentos Latex o Sweave entre otros
+		\item \textbf{Navegador}: Permite moverse en directorios, gestionar paquetes, visualizar gráficas, buscar ayuda
+		\item \textbf{Historial}: Registro de todo el historial de uso.
+	\end{itemize}
+}
+%----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Interface de RStudio}
+	
+	\begin{figure}
+		\includegraphics[scale=0.33]{Interfaz_RStudio.png}
+	\end{figure}
+}
+
+%-----------------------------------------------------------------------------------
+\subsection{Introducción a R}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{¿Que puede hacer R?}
+	
+	Ejemplos graficos con R
+	\begin{center}
+		\textcolor[rgb]{0,0,1}{demo(graphics)}
+	\end{center}
+	
+	Otras graficas posibles...
+	
+	\begin{center}
+		\textcolor[rgb]{0,0,1}{demo(persp)}
+	\end{center}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Gestión de paquetes en RStudio}
+	
+	\begin{itemize}
+		\item Cargar un paquete instalado: $\textcolor[rgb]{0,0,1}{\texttt{library(Nombre\ paquete)}}$\\
+		\item Instalar un paquete:$\textcolor[rgb]{0,0,1}{\texttt{install.packages("Nombre\ paquete")}}$\\
+		\item Eliminar un paquete:$\textcolor[rgb]{0,0,1}{\texttt{remove.packages("Nombre\ paquete")}}$\\
+	\vspace{1cm}
+	\pause
+	\begin{figure}[h]
+		\includegraphics[scale=0.55]{PQ_RStudio1} \qquad
+		\includegraphics[scale=0.55]{PQ_RStudio2}
+		\caption{Paquetes en RStudio}
+		\label{fig:pqrstudio1}
+	\end{figure}
+		
+	\end{itemize}
+}
+%---------------------------------------------------------------------------------------
+\frame{
+	\frametitle{Directorio de trabajo}
+	\begin{itemize}
+		\item
+		Directorio actual de trabajo: $\textcolor[rgb]{0,0,1}{\texttt{getwd()}}$
+				
+		\item Declarar directorio de trabajo: $\textcolor[rgb]{0,0,1}{\texttt{setwd(C:/MIS\ ARCHIVOS/CARPETA1)}}$ \\
+		\item Para ver que archivos hay en el directorio de trabajo: $\textcolor[rgb]{0,0,1}{\texttt{dir()}}$ \\
+		\item Para ver la variables actuales en el espacio de trabajo: $\textcolor[rgb]{0,0,1}{\texttt{ls()}}$\\
+		\vspace{0.4cm}
+		\pause  
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.55]{Files}
+			\caption{Navegador de archivos}
+			\label{fig:files}
+		\end{figure}
+		
+	\end{itemize}
+	
+}
+% %------------------------------------------------------------------------------------
+\frame{
+	\frametitle{Principales Objetos en R}
+	La asignación en R se realiza mediante la instrucción \textcolor[rgb]{0,0,1}{\texttt{\textless{}-}} o tambión \textcolor[rgb]{0,0,1}{\texttt{=}}
+	
+	Aunque hay muchos tipos de objetos en R, los más importantes para propósitos generales son:
+	\begin{columns}
+		\begin{column}{6cm}
+			\begin{itemize}
+				\item Escalares
+				\item Vectores
+				\item Matrices
+			\end{itemize}
+		\end{column}
+		\begin{column}{6cm}
+			\begin{itemize}
+				\item Arreglos (Array)
+				\item Dataframe
+				\item Listas
+			\end{itemize}
+		\end{column}
+	\end{columns}
+	
+	\vspace{0.6cm}
+	La instrucción \textcolor[rgb]{0,0,1}{\texttt{class()}} permite conocer el tipo de objeto.\\
+	\begin{exampleblock}{Ejemplo}
+		\begin{columns}
+			\begin{column}{3cm}
+				\texttt{a<-45}\\
+				\texttt{class(a)}\\
+				\texttt{[1] "numeric"}
+			\end{column}
+			\begin{column}{3cm}
+				\texttt{b<-4+5}\\
+				\texttt{c=b/2}\\
+				\texttt{d=sqrt(c)}
+			\end{column}
+			\begin{column}{3cm}
+				\texttt{e<-log(5)}\\
+				\texttt{f=3\textasciicircum2}\\
+				\texttt{d=tan(f)}
+			\end{column}
+		\end{columns}
+	\end{exampleblock}
+}
+
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Vectores}
+	En R los vectores pueden ser Numéricos, Textuales o Lógicos y se crean con la instrucción \textcolor[rgb]{0,0,1}{\texttt{c()}} o con la función \textcolor[rgb]{0,0,1}{\texttt{scan()}}\\
+	\vspace{0.4cm}
+	\textbf{Vector Numérico}\\
+	\begin{center}
+		\textcolor[rgb]{0,0,1}{\texttt{A=c(1,3,5,6,9)}}
+	\end{center}
+	\textbf{Textual}\\
+	\begin{center}
+		\textcolor[rgb]{0,0,1}{\texttt{B<-c("\ Cálculo I", "\ Cálculo II","\ Estadística I")}}
+	\end{center}
+	\textbf{Vector Lógico}\\
+	\begin{center}
+		\textcolor[rgb]{0,0,1}{\texttt{C<-c(FALSE,FALSE,TRUE,TRUE,TRUE)}}
+	\end{center} 
+}
+
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Funciones útiles para trabajo con vectores}
+	\begin{block}{Vectores}
+		Usando el vector \textcolor[rgb]{0,0,1}{\texttt{A=c(1,3,5,6,9)}}\\
+		\vspace{0.4cm}
+		\begin{tabular}{rll}
+			Longitud&\textcolor[rgb]{0,0,1}{\texttt{n=length(A)}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 5}}\\
+			Tipo&\textcolor[rgb]{0,0,1}{\texttt{class(A)}}&\textcolor[rgb]{1,0,0}{\texttt{[1] "numeric"}}\\
+			Mínimo &\textcolor[rgb]{0,0,1}{\texttt{min(A)}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 1}}\\
+			Máximo&\textcolor[rgb]{0,0,1}{\texttt{max(A)}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 9}}\\
+			Posición de un elemento&\textcolor[rgb]{0,0,1}{\texttt{A[4]}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 6}}\\
+			Varios elementos&\textcolor[rgb]{0,0,1}{\texttt{A[1:3]}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 1 3 5}}\\
+			&\textcolor[rgb]{0,0,1}{\texttt{A[c(1,3)]}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 1 5}}\\
+			Media&\textcolor[rgb]{0,0,1}{\texttt{mean(A)}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 4.8}}\\
+			Desviación Estóndar&\textcolor[rgb]{0,0,1}{\texttt{sd(A)}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 3.03315}}\\
+			Varianza&\textcolor[rgb]{0,0,1}{\texttt{var(A)}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 9.2}}\\
+			Filtros&\textcolor[rgb]{0,0,1}{\texttt{A[A<6]}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 1 3 5}}\\
+			&\textcolor[rgb]{0,0,1}{\texttt{A[A<3 | A>8]}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 1 9}}\\
+			&\textcolor[rgb]{0,0,1}{\texttt{A[A>=3 \& A<8]}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 3 5 6 }}\\
+		\end{tabular}
+	\end{block}
+}
+%----------------------------------------------------------------------------------------
+\frame{
+	\frametitle{Matrices}
+	Las matrices son un tipo muy importante de objeto en todo lenguaje de programación pues brinda toda la potencia de calculo matricial de gran utilidad en la estadística.\\
+	La instrucción para declarar o ingresar una matriz es:
+	\begin{center}
+		\textcolor[rgb]{0,0,1}{\texttt{matrix(c(),nrow = n,ncol = m)}}
+	\end{center}
+	\begin{exampleblock}{Ejemplo}
+		\texttt{B<-matrix(c(2,4,6,3,5,7),nrow = 2,ncol = 3)}\\
+		\texttt{  \ \  [,1] [,2] [,3]}\\
+		\texttt{[1,] \  2  \ \ 6 \ \ 5}\\
+		\texttt{[2,] \   4 \ \ 3 \ \ 7}
+		\\
+		\texttt{C<-matrix(c(2,4,6,3,5,7),nrow = 2,ncol = 3,byrow=T)}\\
+		\texttt{  \ \  [,1] [,2] [,3]}\\
+		\texttt{[1,] \  2  \ \ 4 \ \ 6}\\
+		\texttt{[2,] \   3 \ \ 5 \ \ 7}
+	\end{exampleblock}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Funciones utiles para trabajo con matrices}
+	\begin{block}{Matrices}
+		Usando la matriz\\ 
+		\begin{center}
+			\textcolor[rgb]{0,0,1}{
+				\texttt{  \ \  [,1] [,2] [,3]}\\
+				\texttt{[1,] \  2  \ \ 6 \ \ 5}\\
+				\texttt{[2,] \   4 \ \ 3 \ \ 7}}
+		\end{center}
+		
+		\begin{tabular}{rll}
+			Dimensión&\textcolor[rgb]{0,0,1}{\texttt{dim(B)}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 2 3}}\\
+			Tipo&\textcolor[rgb]{0,0,1}{\texttt{class(B)}}&\textcolor[rgb]{1,0,0}{\texttt{[1] "matrix"}}\\
+			Posición de un elemento&\textcolor[rgb]{0,0,1}{\texttt{B[2,3]}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 7}}\\
+			Fila&\textcolor[rgb]{0,0,1}{\texttt{B[1,]}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 2 6 5}}\\
+			Columna&\textcolor[rgb]{0,0,1}{\texttt{B[,2]}}&\textcolor[rgb]{1,0,0}{\texttt{[1] 6 3}}\\
+			Transpuesta&\textcolor[rgb]{0,0,1}{\texttt{t(B)}}&\\
+			Borra columna&\textcolor[rgb]{0,0,1}{\texttt{C=B[,1:2]}}&\\
+			Determinante&\textcolor[rgb]{0,0,1}{\texttt{det(C)}}&\\
+			Inversa&\textcolor[rgb]{0,0,1}{\texttt{solve(C)}}&\\
+		\end{tabular}
+	\end{block}
+}
+%-----------------------------------------------------------------------------------
+%  \frame{
+% \frametitle{Arreglos (Array)}
+% Un array es una matriz \emph{n-dimensional}.
+%  \begin{exampleblock}{Ejemplo}
+%    \texttt{D<-array(c(1:12),dim = c(2,2,3))}\\
+%  \texttt{D}\\
+%  \texttt{, , 1}\\
+%  
+%  \texttt{     [,1] [,2] [,3]}\\
+%  \texttt{[1,]    1    3    5}\\
+%  \texttt{[2,]    2    4    6}\\
+%  
+%  \texttt{, , 2}\\
+%  
+%  \texttt{     [,1] [,2] [,3]}\\
+%  \texttt{[1,]    7    9   11}\\
+%  \texttt{[2,]    8   10   12}
+%    \end{exampleblock}
+%  }
+%----------------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Dataframe}
+Este es el elemento que con mayor frecuencia se emplea para almacenar datos estadísticos. En esencia es un arreglo bidimensional en el cual como es común se emplean
+\begin{description}
+	\item Filas $\rightarrow$ Registros
+	\item Columnas $\rightarrow$ Variables
+\end{description}
+\begin{exampleblock}{Ejemplo}
+	\begin{verbatim}
+	ID<-c(1:10)
+	GENERO<-c("H","M","M","M","H","H","M","M","H","H")
+	EDAD<-c(18,21,19,20,19,21,20,19,21,18)
+	IMC<-c(23.1,24.2,25.3,27.1,19.0,23.0,22.8,23.0,21.8,24.3)
+	
+	DT<-data.frame(ID,GENERO,EDAD,IMC)
+	
+	rownames(DT)<-c("Jhon","Luz","Olga","Sara","Luis",
+	"Diego","Ana","Ivon","Juan","Carlos")
+	\end{verbatim}
+\end{exampleblock}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Dataframe}
+\begin{exampleblock}{Ejemplo}
+\begin{columns}
+	\begin{column}{6cm}
+		\begin{verbatim}
+		DT
+		ID GENERO EDAD  IMC
+		Jhon    1      H   18 23.1
+		Luz     2      M   21 24.2
+		Olga    3      M   19 25.3
+		Sara    4      M   20 27.1
+		Luis    5      H   19 19.0
+		Diego   6      H   21 23.0
+		Ana     7      M   20 22.8
+		Ivon    8      M   19 23.0
+		Juan    9      H   21 21.8
+		Carlos 10      H   18 24.3
+		
+		\end{verbatim}
+	\end{column}
+	\begin{column}{6cm}
+		\begin{verbatim}
+		head(DT)
+		ID GENERO EDAD  IMC
+		Jhon    1      H   18 23.1
+		Luz     2      M   21 24.2
+		Olga    3      M   19 25.3
+		Sara    4      M   20 27.1
+		
+		tail(DT)
+		ID GENERO EDAD  IMC
+		Ana     7      M   20 22.8
+		Ivon    8      M   19 23.0
+		Juan    9      H   21 21.8
+		Carlos 10      H   18 24.3
+		
+		\end{verbatim}
+	\end{column}
+\end{columns}
+
+\end{exampleblock}
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Dataframe}
+\begin{exampleblock}{Ejemplo}
+\begin{verbatim}
+str(DT)
+'data.frame':	10 obs. of  4 variables:
+$ ID    : int  1 2 3 4 5 6 7 8 9 10
+$ GENERO: Factor w/ 2 levels "H","M": 1 2 2 2 1 1 2 2 1 1
+$ EDAD  : num  18 21 19 20 19 21 20 19 21 18
+$ IMC   : num  23.1 24.2 25.3 27.1 19 23 22.8 23 21.8 24.3
+\end{verbatim}
+\end{exampleblock}
+Para iniciar las principales funciones útiles para el manejo de Dataframe son:
+\begin{columns}
+\begin{column}{6cm}
+\begin{description}
+	\item \texttt{data.frame}
+	\item \texttt{head}
+	\item \texttt{tail}
+	\item \texttt{rownames}
+	\item \texttt{colnames}
+\end{description}
+\end{column}
+\begin{column}{6cm}
+\begin{description}
+	\item \texttt{str} 
+	\item \texttt{view}
+	\item \texttt{dim}
+\end{description}
+\end{column}
+\end{columns}
+
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Importación de Archivos de datos}
+Existen diversas formas de importar datos a R una de las cuales se describe aquí.\\
+A partir de una hoja de Excel, se guarda como archivo `csv` en el directorio de trabajo y luego se importa mediante la instrucción
+
+\begin{center}
+\textcolor[rgb]{0,0,1}{\texttt{DT<-read.table(file.choose(),header=T,sep=",",dec=".")}}
+\end{center}
+
+Es muy importante especificar los elementos\\
+\begin{description}
+\item \textcolor[rgb]{0,0,1}{\texttt{header=TRUE}} Reconocer nombres de columna
+\item \textcolor[rgb]{0,0,1}{\texttt{sep=","}}     El separador entre columnas(, ; : tab espacio)
+\item \textcolor[rgb]{0,0,1}{\texttt{dec="."}}     Separador de cifras decimales (. o ,)
+\end{description}
+
+\end{frame}
+%-----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Filtrando un dataframe}
+\begin{exampleblock}{Ejemplo}
+\begin{verbatim}
+DT1=DT[DT$PAIS==1,]
+str(DT1)
+'data.frame':	200 obs. of  5 variables:
+$ TIPO : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 ...
+$ PAIS : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 ...
+$ BOLSA: int  1 2 3 4 5 6 7 8 9 10 ...
+$ ARETE: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 ...
+$ PESO : num  9.09 9.06 9.62 9.21 9.32 9.22 9.17 9.1  ...
+
+TIPO PAIS BOLSA ARETE PESO
+1    1    1     1     1 9.09
+2    1    1     2     1 9.06
+3    1    1     3     1 9.62
+4    1    1     4     1 9.21
+
+\end{verbatim}
+\end{exampleblock}
+\end{frame}
+
+%-----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Factores}
+En general se puede redefinir el tipo de variable de una columna en un dataframe con el fin de preparar la base de datos para próximos análisis
+
+Algunas conversiones importantes son:
+\begin{itemize}
+\item \textcolor[rgb]{0,0,1}{\texttt{as.numeric(A)}} Convierte un elemento en vector numérico\\
+\item  \textcolor[rgb]{0,0,1}{\texttt{as.factor(A)}} Convierte un vector en factor\\
+\item  \textcolor[rgb]{0,0,1}{\texttt{as.matrix(A)}} Convierte un arreglo en matriz\\
+\item  \textcolor[rgb]{0,0,1}{\texttt{as.data.frame(A)}} Convierte un arreglo en data.frame
+\end{itemize}
+En el ejemplo se tendría
+\begin{exampleblock}{Ejemplo}
+\begin{verbatim}
+DT$PAIS=as.factor(DT$PAIS)
+\end{verbatim}
+\end{exampleblock}
+\end{frame}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Practica 1}
+En grupos de dos personas van a realizar las siguientes actividades\\
+\begin{enumerate}
+\item Importe el archivo $\texttt{BASE ATB.csv}$
+\item Revísela y asegúrese que todas las variables sean tipo numéricas o enteros, excepto $\texttt{MST}$ que es un factor.
+\item Seleccione 5 atributos y obtenga un resumen de medidas descriptivas para cada muestra ($\texttt{MST}$).
+\item Determine si los datos de esos 5 atributos se distribuyen como una normal.
+\item Realice un histograma de frecuencias para una variable de las cinco escogidas.
+\end{enumerate}
+}
+
+%-----------------------------------------------------------------------------------
+\section{ANÁLISIS UNIVARIADO DE DATOS EN SENSORIAL}
+%\frame{\sectionpage}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Estadística Univariada}
+	En términos generales describir todas las herramientas estadísticas univariadas que pueden ser empleadas resulta una amplia tarea, pero sin duda unas de las principales áreas que se suelen emplear son:\\
+	
+	\begin{itemize}
+		\item E. Descriptiva
+		\item E. Inferencial
+		\begin{itemize}
+			\item Pruebas de hipótesis
+			\item Diseño y análisis de experimentos
+			\item Modelos estadísticos (Regresión)
+			\item Análisis bayesiano
+			\item Modelos longitudinales
+		\end{itemize}
+		\item Muestreo
+	\end{itemize}
+	
+}
+
+%-----------------------------------------------------------------------------------
+\subsection{Inferencia Estadística}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Inferencia Estadística}
+	Es el procedimiento mediante el cual se pueden sacar conclusiones acerca de la población, partiendo de la información contenida en una muestra extraída de una población.\\
+	En general hay dos tipos de inferencia estadística
+	\begin{itemize}
+		\item Estimación
+		\item Prueba de Hipótesis
+	\end{itemize}
+	\pause
+	Sobre que elementos se desarrolla la estimación o las pruebas de hipótesis?\\
+	\begin{itemize}
+		\item Medias
+		\item Proporciones
+		\item Varianzas
+		\item Coeficientes de regresión
+		\item Correlaciones
+		\item ...
+	\end{itemize}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Estimación}
+	Es el proceso mediante el cual intentamos determinar el valor de un parámetro de la población, a partir de la información de una muestra.\\
+	\vspace{0.5cm}
+	\textcolor[rgb]{1,0,0}{\emph{Estimación}}: es el valor numérico que asignamos a un parámetro.\\
+	\textcolor[rgb]{1,0,0}{\emph{Estimador}}: es la formula utilizada para hacer la estimación.\\
+	\begin{exampleblock}{Ejemplo}
+		\[\bar{X}=\dfrac{1}{n}\sum_{i=1}^{n} x_{i} \qquad   \bar{X}=3.25\]
+	\end{exampleblock}
+	\pause
+	\vspace{0.5cm}
+	Hay dos tipos de estimaciones para cualquier parámetro, estos son:\\
+	\begin{itemize}
+		\item Estimación Puntual           
+		\item Estimación por Intervalo     
+	\end{itemize}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Uso de la estimación por intervalo}
+	Los IC se emplean mayoritariamente para variables continuas o también llamadas variables métricas.\\
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.55,keepaspectratio=true]{./IC_R.eps}
+		% IC_R.eps: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=0 0 324 324
+	\end{figure}
+	El nivel de confianza denota la probabilidad de contener el valor verdadero.
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Hipótesis}
+	\begin{itemize}
+		\item \textcolor[rgb]{1,0,0}{Hipótesis}: Afirmación no probada acerca de un problema o situación especifica.
+		\item \textcolor[rgb]{1,0,0}{Hipótesis científica}: es una proposición aceptable que ha sido formulada a través de la recolección de información y datos, aunque no esté confirmada, sirve para responder de forma alternativa a un problema con base científica.
+		\item \textcolor[rgb]{1,0,0}{Hipótesis estadística}:En el contexto estadístico una Hipótesis se entiende como una afirmación acerca de un conjunto de parámetros que describen una característica de una o más poblaciones.
+	\end{itemize}
+	\vspace{0.6cm}
+	Una \textcolor[rgb]{1,0,0}{Prueba de Hipótesis} entonces debe entenderse como un procedimiento mediante el cual se determina el grado de verdad m\'as probable de tal afirmación, en función de la información disponible en la muestra.
+	
+}
+
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Error Tipo I y II en Pruebas de Hipótesis}
+	\begin{center}
+		\begin{tabular}{|r|c|c|}\hline
+			&ACEPTA $H_{0}$       &RECHAZA $H_{0}$\\ \hline
+			$H_{0}$ Verdadera&Buena decisión&\textcolor[rgb]{1,0,0}{Error Tipo I}\\ \hline
+			$H_{0}$ Falsa    &\textcolor[rgb]{1,0,0}{Error Tipo II}    &Buena decisión\\ \hline
+		\end{tabular} 
+	\end{center}
+\pause
+	En general se emplea la notación siguiente:
+	\begin{itemize}
+		\item $\alpha$: Error Tipo I
+		\item $\beta$: Error Tipo II
+	\end{itemize}
+	\vspace{0.6cm}
+	Toda prueba de hipótesis se diseña con el objeto de controlar el error tipo I y se deja libre el tipo II.\\
+	\vspace{0.6cm}
+	En el caso de los intervalos de confianza el término $\left(1-\dfrac{\alpha}{2}\right)\times 100\%$ denota precisamente el \emph{Nivel de confianza del intervalo}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{TIPOS DE PRUEBAS}
+	Para varios casos de inferencia estadística existen fundamentalmente dos tipos de pruebas que en general se pueden describir como:
+	\vspace{0.6cm}
+	\begin{itemize}
+		\item \textcolor[rgb]{1,0,0}{Paramétricas}: Estas hacen consideraciones acerca de la distribución de la población.
+			\begin{itemize}
+				\item Prueba t (una y dos medias)
+				\item ANOVA
+				\item Regresión
+				\item $\ldots$
+			\end{itemize}
+		\pause
+		\item \textcolor[rgb]{1,0,0}{No Paramétricas}: Generalmente no asume distribuciones para la población.
+			\begin{itemize}
+				\item Prueba de Wilcoxon, Rangos Signados
+				\item Kruskal-Wallis
+				\item Friedman, 
+				\item $\ldots$
+			\end{itemize}
+	\end{itemize}
+	\vspace{0.2cm}
+	\textbf{NOTA IMPORTANTE}:En general estas pruebas tiendes a coincidir en la conclusión, sin embargo, en ocasiones se presentan discrepancias cuando los datos presentan tendencia hacia un lado de la escala de medida.
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Medias}
+	\textbf{Estas pruebas aplican a}: \textcolor[rgb]{1,0,0}{Variables continuas}\\
+	\vspace{0.2cm}
+	En el caso de las media las hipótesis se orientan a los siguientes casos:
+	\begin{enumerate}
+		\item Una muestra
+		\item Dos muestras
+		\begin{enumerate}
+			\item Independientes
+			\item Relacionadas
+		\end{enumerate}
+		\item Tres o más muestras 
+	\end{enumerate}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.5]{./simetria.png}
+		% simetria.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+	\end{figure}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Una Media}
+	La prueba paramétrica corresponde a la prueba t y la no paramétrica a la de Wilcoxon  (en su versión de una muestra).\\
+	\vspace{0.4cm}
+	\textbf{Hip\'otesis}:
+	\begin{equation*}
+	H_{0}:\mu=\mu_{0} \qquad  vs. \qquad  
+	\left\{
+	\begin{array}{l}
+	H_{a}:\mu>\mu_{0} \\
+	H_{a}:\mu \neq \mu_{0} \\
+	H_{a}:\mu < \mu_{0}
+	\end{array}
+	\right.
+	\end{equation*}
+	donde $\mu_{0}$ es un valor fijo y conocido frente al cual se desea hacer la comparaci\'on.\\
+	\begin{exampleblock}{En Rcmdr...}
+		\textbf{Menú} $\rightarrow$ Estadísticos $\rightarrow$ Medias$\rightarrow$Test t para una muestra\\
+		\vspace{0.3cm}
+		\textbf{Menu} $\rightarrow$ Estadísticos $\rightarrow$ Test no paramétricos $\rightarrow$ Test de Wilcoxon para una muestra
+	\end{exampleblock}
+}
+
+%-----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Implementación en R (Prueba t)}
+
+\large{\textbf{Instrucción}}\\
+
+\textcolor[rgb]{0,0,1}{\texttt{with(DT, (t.test(PESO, alternative='two.sided', mu=8, conf.level=.95)))}}\\
+\vspace{0.3cm}
+\large{\textbf{Salida}}\\
+
+\begin{verbatim}
+One Sample t-test
+
+data:  PESO
+t = -6.8476, df = 395, p-value = 2.886e-11
+alternative hypothesis: true mean is not equal to 8
+95 percent confidence interval:
+7.091569 7.496846
+sample estimates:
+mean of x 
+7.294207 
+\end{verbatim}
+\end{frame}
+%-----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Implementación en R (Prueba de Wilcoxon)}
+
+\large{\textbf{Instrucción}}\\
+
+\textcolor[rgb]{0,0,1}{\texttt{with(DT, median(PESO, na.rm=TRUE))\\
+		with(DT, mean(PESO, na.rm=TRUE))\\
+		with(DT, wilcox.test(PESO, alternative='two.sided', mu=8))}}\\
+\vspace{0.3cm}
+\large{\textbf{Salida}}\\
+\begin{verbatim}
+Wilcoxon signed rank test with continuity correction
+
+data:  PESO
+V = 19701, p-value < 2.2e-16
+alternative hypothesis: true location is not equal to 8
+\end{verbatim}
+\end{frame}
+
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Dos Medias}
+	En el caso de dos muestras se debe considerar si estás son:
+	\vspace{0.5cm}
+	\begin{enumerate}
+		\item \textcolor[rgb]{1,0,0}{Independientes}: Cuando las observaciones o datos corresponden a muestras diferentes.\\
+		\emph{\textbf{Ejemplo}}: Grupos de usuarios diferentes que participan en una prueba.
+		\vspace{0.4cm}
+		\item \textcolor[rgb]{1,0,0}{Relacionadas}: Cuando las observaciones provienen de las mismas unidades muestrales y se han tomado en dos momentos diferentes (También llamadas muestras pareadas).\\
+		\emph{\textbf{Ejemplo}}: Un grupo de jueces sensoriales cuantifican la intensidad olfativa de una fragancia en dos momentos diferentes luego de ser aplicada en un portador.
+	\end{enumerate}
+	
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Dos Medias}
+	
+	\textbf{Muestras Independientes}\\
+	\vspace{0.4cm}
+	La prueba paramétrica corresponde a la prueba t y la no paramétrica a la de Wilcoxon  (en su versión para dos muestras).\\
+	\vspace{0.4cm}
+	\textbf{Hipótesis}:
+	\begin{equation*}
+	H_{0}:\mu_{1}=\mu_{2} \qquad  vs. \qquad  
+	\left\{
+	\begin{array}{l}
+	H_{a}:\mu_{1}>\mu_{2} \\
+	H_{a}:\mu_{1} \neq \mu_{2} \\
+	H_{a}:\mu_{1} < \mu_{2}
+	\end{array}
+	\right.
+	\end{equation*}
+	
+	\begin{exampleblock}{En Rcmdr...}
+		\textbf{Menú} $\rightarrow$ Estadísticos $\rightarrow$ Medias$\rightarrow$Test t para muestras independientes\\
+		\vspace{0.3cm}
+		\textbf{Menú} $\rightarrow$ Estadísticos $\rightarrow$ Test no paramétricos $\rightarrow$ Test de Wilcoxon para dos muestras
+	\end{exampleblock}
+}
+%-----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Implementación en R (Prueba t)}
+
+\large{\textbf{Instrucción}}\\
+
+\textcolor[rgb]{0,0,1}{\texttt{	t.test(PESO~TIPO, alternative='two.sided', conf.level=.95, var.equal=FALSE, Rcmdr+   data=DT)}}\\
+\vspace{0.3cm}
+\large{\textbf{Salida}}\\
+
+\begin{verbatim}
+Welch Two Sample t-test
+
+data:  PESO by TIPO
+t = 191.73, df = 296.93, p-value < 2.2e-16
+alternative hypothesis: true difference in means 
+is not equal to 0 95 percent confidence interval:
+4.033423 4.117082
+sample estimates:
+mean in group Corto mean in group Largo 
+9.331833            5.256581 
+\end{verbatim}
+\end{frame}
+%-----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Implementación en R (Prueba de Wilcoxon)}
+
+\large{\textbf{Instrucción}}\\
+
+\textcolor[rgb]{0,0,1}{\texttt{with(DT, tapply(PESO, TIPO, median, na.rm=TRUE))
+		wilcox.test(PESO ~ TIPO, alternative="two.sided", data=DT)}}\\
+\vspace{0.3cm}
+\large{\textbf{Salida}}\\
+\begin{verbatim}
+Corto  Largo 
+9.4100 5.2495 
+
+Wilcoxon rank sum test with continuity correction
+
+data:  PESO by TIPO
+W = 39204, p-value < 2.2e-16
+alternative hypothesis: 
+true location shift is not equal to 0
+\end{verbatim}
+\end{frame}
+
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Dos Medias}
+	
+	\textbf{Muestras Relacionadas}\\
+	\vspace{0.4cm}
+	La prueba paramétrica corresponde a la prueba t y la no paramétrica a la de Wilcoxon  para muestras pareadas.\\
+	\vspace{0.4cm}
+	\textbf{Hipótesis}:
+	\begin{equation*}
+	H_{0}:\mu_{1}-\mu_{2}=0 \qquad  vs. \qquad  
+	\left\{
+	\begin{array}{l}
+	H_{a}:\mu_{1}-\mu_{2}>0 \\
+	H_{a}:\mu_{1} - \mu_{2}\neq 0 \\
+	H_{a}:\mu_{1} - \mu_{2}<0
+	\end{array}
+	\right.
+	\end{equation*}
+	
+	\begin{exampleblock}{En Rcmdr...}
+		\textbf{Menú} $\rightarrow$ Estadísticos $\rightarrow$ Medias$\rightarrow$Test t para datos relacionados\\
+		\vspace{0.3cm}
+		\textbf{Menú} $\rightarrow$ Estadísticos $\rightarrow$ Test no paramétricos $\rightarrow$ Test de Wilcoxon para dos muestras
+	\end{exampleblock}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Practica 1: Prueba de hipótesis para medias}
+	\vspace{0.3cm}
+	\textbf{BASE:Aretes.csv}
+	\vspace{0.3cm}
+	\begin{enumerate}
+		\item Para cada tipo de arete se le pidió al proveedor que tuvieran un peso especifico donde el liviano debe tener un peso medio de 5.3 gramos y el pesado debe tener 9.1 gramos. ¿Cuál es la prueba de hipótesis correspondiente?
+		\vspace{0.3cm}
+		\item Cada par de aretes se marca con un código en cada grupo y se dividen en dos grupos que son enviados a dos países. ¿Presentan las muestras que van a los dos países el mismo valor medio?
+		\vspace{0.3cm}
+		\item Realice un gráfico para cada caso.
+	\end{enumerate}
+	
+}
+
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Una Proporción}
+	\textbf{Estas pruebas aplican a}: \textcolor[rgb]{1,0,0}{Variables discretas ordinales y nominales}\\
+	\vspace{0.2cm} 
+	La prueba paramétrica corresponde a la prueba Z.\\
+	\vspace{0.4cm}
+	\textbf{Hipótesis}:
+	\begin{equation*}
+	H_{0}:\pi=\pi_{0} \qquad  vs. \qquad  
+	\left\{
+	\begin{array}{l}
+	H_{a}:\pi>\pi_{0} \\
+	H_{a}:\pi \neq \pi_{0} \\
+	H_{a}:\pi < \pi_{0}
+	\end{array}
+	\right.
+	\end{equation*}
+	donde $\pi_{0}$ es un valor fijo y conocido frente al cual se desea hacer la comparación.\\
+	\begin{exampleblock}{En Rcmdr...}
+		\textbf{Menú} $\rightarrow$ Estadísticos $\rightarrow$ Proporciones$\rightarrow$Test de proporciones para una muestra\\
+		\vspace{0.3cm}
+	\end{exampleblock}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Dos Proporciones}
+	La prueba paramétrica corresponde a la prueba Z.\\
+	\vspace{0.4cm}
+	\textbf{Hipótesis}:
+	\begin{equation*}
+	H_{0}:\pi_{1}=\pi_{2} \qquad  vs. \qquad  
+	\left\{
+	\begin{array}{l}
+	H_{a}:\pi_{1}>\pi_{2} \\
+	H_{a}:\pi_{1}
+	\neq \pi_{2} \\
+	H_{a}:\pi_{1} < \pi_{2}
+	\end{array}
+	\right.
+	\end{equation*}
+	
+	\begin{exampleblock}{En Rcmdr...}
+		\textbf{Menú} $\rightarrow$ Estadísticos $\rightarrow$ Proporciones$\rightarrow$Test de proporciones para dos muestras\\
+		\vspace{0.3cm}
+	\end{exampleblock}
+}
+
+
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Practica 2: Prueba de hipótesis para proporciones}
+	\vspace{0.3cm}
+	%BASE:BASE_TOM_COMPLETA.XLS \qquad  \textbf{Hoja: Base_R}
+	\vspace{0.3cm}
+	\begin{enumerate}
+		\item Identifique las variables SABOR, CALIDAD, CALIDAD y MARCA.
+		\vspace{0.3cm}
+		\item Recodificar cada una de las variables
+		\vspace{0.3cm}
+		\item Convertir la variable en factor. En Rcmdr ir a DATOS; Modificar variables del conjunto de datos activo; Convertir variable numérica en factor
+		\vspace{0.3cm}
+		\item Hacer la prueba de hipótesis para una proporción. Estadísticos; Proporciones; Test de proporciones para una muestra
+	\end{enumerate}
+	% 
+}
+%-----------------------------------------------------------------------------------
+\subsection{Pruebas Discriminantes}
+
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Seis Pruebas básicas}
+	Entre las diversas pruebas sensoriales que se pueden realizar, las seis pruebas básicas son:\\
+	
+	\begin{center}
+		\begin{tabular}{lcl}\hline
+			\textbf{PRUEBA} & \textbf{No. MUESTRAS} & \textbf{RESPUESTA}\\ \hline
+			2-AFC & 2 & Más Fuerte o Débil\\
+			3-AFC & 3 & Más Fuerte o Débil\\
+			Duo-Trio & 3 & Par igual\\
+			Triangular & 3 & Muestra diferente\\
+			A - No A & 1 & Igual a referente\\
+			Igual-Diferente & 2 & Diferencia o no\\ \hline
+		\end{tabular}
+	\end{center}
+	Las cuatro primeras corresponden a \textbf{Métodos de selección forzada}, pues los participantes deben hallar una selección aún si no la pueden detectar claramente.
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Métodos de Selección Forzada}
+	Estos métodos se pueden emplear con dos finalidades\\
+	\vspace{0.3cm}
+	\begin{enumerate}
+		\item Pruebas de diferencia
+		\item Pruebas de Preferencia
+	\end{enumerate}
+	\vspace{0,8cm}
+	En general las seis pruebas de discriminación básicas son procedimientos basados en pruebas de hipótesis para proporciones las cuales para muestras pequeñas emplean la \textcolor[rgb]{0,0,1}{Distribución Binomial} a fin de establecer el resultado de la prueba.
+	\begin{align*}
+	X &\sim B(n,p) \qquad
+	P[X=i]= \binom{n}{i}p^{i}(1-p)^{n-i}
+	\end{align*}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Modelo para pruebas de diferencia}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.35,keepaspectratio=true]{./Modelo.png}
+		% Modelo.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+	\end{figure}
+	\begin{columns}
+		\begin{column}{5.5cm}
+			\begin{equation}
+			p_{c}=p_{d}+p_{0}(1-p_{d})
+			\end{equation}
+			donde:\\
+			$p_{c}$: Prob. de respuesta correcta\\
+			$p_{0}$: Prob. de adivinar \\
+			$p_{d}$: Proporción de discriminadores\\
+			\vspace{1cm}
+		\end{column}
+		\begin{column}{6.5cm}
+			
+			\begin{figure}[h]
+				\centering
+				\includegraphics[scale=0.26,keepaspectratio=true]{./pdisc.eps}
+				% pdisc.ps: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+			\end{figure}
+		\end{column}
+	\end{columns}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Modelo para pruebas de diferencia}
+	En una prueba de diferencia entonces los pares de hipótesis a probar serón:
+	\begin{columns}
+		\begin{column}{6cm}
+			\begin{align*}
+			H_{0}:p_{c}&=p_{0}\\
+			H_{a}:p_{c}&\neq  p_{0}
+			\end{align*}
+			\textcolor[rgb]{1,0,0}{La proporción de aciertos es diferente de la probabilidad de adivinar}
+		\end{column}
+		\begin{column}{6cm}
+			\begin{align*}
+			H_{0}:p_{c}&=p_{0}\\
+			H_{a}:p_{c}&>  p_{0}
+			\end{align*}
+			\textcolor[rgb]{0,0,1}{La proporción de aciertos es mayor que la probabilidad de adivinar}
+		\end{column}
+	\end{columns}
+	\vspace{0.5cm}
+	La probabilidad de adivinar en cada una de la pruebas es:\\
+	\begin{center}
+		\begin{tabular}{lcl}\hline
+			\textbf{PRUEBA} & $p_{0}$\\ \hline
+			2-AFC & $1/2$ \\
+			Duo-Trio & $1/2$\\
+			3-AFC & $1/3$\\
+			Triangular & $1/3$ \\ \hline
+		\end{tabular}
+	\end{center}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Modelo para pruebas de preferencia}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.3,keepaspectratio=true]{./ModeloP.png}
+		% Modelo.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+	\end{figure}
+	\begin{columns}
+		\begin{column}{5.5cm}
+			\begin{align}
+			P_{A}&=p_{a}+\dfrac{1-p_{a}-p_{b}}{2}
+			%P_{B}&=\dfrac{1-p_{a}+p_{b}}{2}
+			\end{align}
+			donde:\\
+			$p_{a}$: Prop. que prefiere A\\
+			$p_{b}$: Prop. que prefiere B\\
+			$P_{A}$: Prop. que escoge A\\
+			%$P_{B}$: Proporción que escoge B\\
+			\vspace{1cm}
+		\end{column}
+		\begin{column}{6.5cm}
+			\begin{figure}[h]
+				\centering
+				\includegraphics[scale=0.26,keepaspectratio=true]{./pdisc2.eps}
+				% pdisc.ps: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+			\end{figure}
+		\end{column}
+	\end{columns}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Estimación de $p_{d}$}
+	En pruebas discriminativas el tamaño de muestra se establece a partir de fijar los valores $\alpha$, $\beta$ y $p_{d}$ por lo cual es indispensable establecer una estimación de tal valor.
+	\begin{equation}
+	\hat{p}_{d}=\dfrac{\hat{p}_{c}-p_{0}}{1-p_{0}}
+	\end{equation}
+	donde $\hat{p}_{c}$ es la proporción observada de aciertos en el panel. Con lo cual un intervalo de confianza del $95\%$ para $p_{d}$ será:
+	\begin{equation}
+	\hat{p}_{d}\pm 1.96\sqrt{V(\hat{p}_{d})}
+	\end{equation}
+	Donde $V(\hat{p}_{d})$ es la varianza de la estimación y está dada por:
+	\begin{equation}
+	V(\hat{p}_{d})=\dfrac{1}{(1-p_{0})^{2}}\dfrac{\hat{p}_{d}(1-\hat{p}_{d})}{N}
+	\end{equation}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Ejemplo...}
+	En una prueba con 100 consumidores se le presenta a cada participante dos productos lácteos A y B, siendo el primero, el producto que actualmente esta en el mercado y B corresponde al mismo producto con un cambio importante de una materia prima. A cada participante se le pide probar los productos y determinar si son iguales o diferentes. Luego de la prueba se encuentra que 62 personas detectan la diferencia.
+	¿Cuál es la proporción de discriminadores $\textcolor[rgb]{1,0,0}{p_{d}}$ para ese producto en la población?\\
+	\vspace{0.1cm}
+	Estimación puntual de aciertos: $\textcolor[rgb]{1,0,0}{p_{c}=0.62}$. Probabilidad de adivinar: $\textcolor[rgb]{1,0,0}{p_{0}=0.5}$\\
+	\begin{equation*}
+	\hat{p}_{d}=\dfrac{\hat{p}_{c}-p_{0}}{1-p_{0}} \qquad	\hat{p}_{d}=\dfrac{0.62-0.5}{1-0.5} \qquad \hat{p}_{d}=0.24
+	\end{equation*}
+%	\vspace{0.1cm}
+	\begin{align*}
+	V(\hat{p}_{d})&=\dfrac{1}{(1-p_{0})^{2}}\dfrac{\hat{p}_{d}(1-\hat{p}_{d})}{N} \qquad
+		V(\hat{p}_{d})=\dfrac{1}{(0.5)^{2}}\dfrac{0.24(0.76)}{100} \qquad 	V(\hat{p}_{d})=0.097
+	\end{align*}
+	De donde\\
+	\begin{equation*}
+	\hat{p}_{d}\pm 1.96\sqrt{V(\hat{p}_{d})} \qquad \boxed{(0.05, 0.43)}
+	\end{equation*}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Ejemplo...}
+	En una prueba triangular se registro 22 respuestas correctas de un total de 52 evaluaciones. ¿Cual es el intervalo de confianza del $95\%$ para la proporción de discriminadores?
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Tamaños de Muestra para una prueba triangular}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.4,keepaspectratio=true]{./Tabla2.eps}
+		% Tabla.eps: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=14 14 825 450
+		\caption{Tomado de Sensory Evaluation Techniques}
+	\end{figure}
+	
+}
+%-----------------------------------------------------------------------------------
+%\frame{
+%	\frametitle{Pruebas de Similaridad}
+%	Estas pruebas se emplean para establecer si dos productos son hasta cierto valor admisible tan parecidos que no es posible diferenciarlos por la gran mayoría de los consumidores, típicamente útil para evaluar reformulaciones o cambios en materias primas.\\
+%	En general el desarrollo de las pruebas de similaridad se realiza desde un enfoque diferente al de las  pruebas de diferencia, considerando el error tipo II $(\beta)$ como elemento fundamental para fijar y garantizar así la potencia de la prueba $(1-\beta)$.\\
+%	El término \textcolor[rgb]{1,0,0}{\emph{Intervalo de pruebas de hipótesis}} hace relación al tipo de hipotesis que se plantean como son:
+%	\begin{equation*}
+%	\begin{align*}
+%		H_{0}:|p_{a}-p_{b}|\geq \Delta_{0} \qquad H_{a}:|p_{a}-p_{b}|< \Delta_{0}
+%	\end{align*}
+%	\end{equation*}
+%	Esto implica la validación de dos pares de hipótesis a saber.
+%}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Pruebas de Similaridad}
+	\textbf{No inferioridad}
+	\begin{equation*}
+	H_{0}:p_{a}-p_{b} \leq -\Delta_{0} \quad vs \quad  H_{a}:p_{a}-p_{b} > -\Delta_{0}
+	\end{equation*}
+	La proporción $p_{a}$ no es inferior a $p_{b}$\\
+	\vspace{0.7cm}
+	\textbf{No Superioridad}
+	\begin{equation*}
+	H_{0}:p_{a}-p_{b} \geq \Delta_{0} \quad vs \quad  H_{a}:p_{a}-p_{b} < \Delta_{0}
+	\end{equation*}
+	La proporción $p_{a}$ es mayor a $p_{b}$
+	
+}
+
+%-----------------------------------------------------------------------------------
+\subsection{Diseño y Análisis de Experimentos}
+%-----------------------------------------------------------------------------------
+ 
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Conceptos de Diseño Experimental}
+	\begin{itemize}
+		\item \textcolor[rgb]{0,0,1}{Factor}: Son variables controlables de interés para el investigador.
+		\vspace{0.3cm}
+		\item \textcolor[rgb]{0,0,1}{Nivel}: Cada uno de los valores que toma un factor (Alto, medio, bajo).
+		\vspace{0.3cm}
+		\item \textcolor[rgb]{0,0,1}{Variable respuesta}: Es lo que se mide o cuenta y es el objetivo de todo el diseño.
+		\vspace{0.3cm}
+		\item \textcolor[rgb]{0,0,1}{Tratamiento}: Son las combinaciones de todos los niveles de los factores.
+		\vspace{0.3cm}
+		\item \textcolor[rgb]{0,0,1}{Modelo}: Es la expresión matem?tica que describe te?ricamente la variable respuesta en función de los factores.
+	\end{itemize}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Conceptos de Diseño Experimental}
+	\begin{itemize}
+		\item \textcolor[rgb]{0,0,1}{Bloque}: Son variables categóricas que se introducen al diseño con el fin de organizar el material experimental en grupos más homogéneos entre si.
+		\vspace{0.3cm}
+		\item \textcolor[rgb]{0,0,1}{Unidad Experimental}: Es cada individuo, animal u objeto que se somete a un tratamiento.
+		\vspace{0.3cm}
+		\item \textcolor[rgb]{0,0,1}{Observación}: Cada valor de la variable respuesta en cada unidad experimental.
+		\vspace{0.3cm}
+		\item \textcolor[rgb]{0,0,1}{Unidad Observacional}: Es el elemento especifico sobre el cual se realiza la medición en la unidad experimental.
+		\vspace{0.3cm}
+		\item \textcolor[rgb]{0,0,1}{Replica}: Corresponde al número de unidades experimentales que se asignan a cada tratamiento.
+	\end{itemize}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Ejemplo}
+	En el desarrollo de una mascara para pestañas (pestañina) se desea mejorar la distribución del producto cuando las usuarias lo aplican, para lo cual se proponen siete tipos diferentes de aplicadores los cuales se probaron con dos formulaciones comercialmente exitosas de la compañía. La evaluación se realiza con 70 voluntarias y 3 jueces, así cada usuaria se aplica las dos mascaras con el mismo cepillo y las jueces evalúan de manera independiente las dos muestras.\\
+	Tras la aplicación del producto, cada juez evalúa de manera independiente si el producto está homogeneamente distribuido usando una escala de siete puntos.\\
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.3]{./Cepillo.eps}
+		% Cepillos.jpg: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+	\end{figure}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Ejemplo}
+	\begin{center}
+		\renewcommand{\arraystretch}{1.3}
+		\begin{tabular}{rl}
+			\textcolor[rgb]{0,0,1}{\textbf{Factor}}:& Tipo de aplicador\\
+			\textcolor[rgb]{0,0,1}{\textbf{Niveles}}:& Los siete tipos de aplicador\\
+			\textcolor[rgb]{0,0,1}{\textbf{Bloque}}:& Las dos tipos de mascara empleada\\
+			\textcolor[rgb]{0,0,1}{\textbf{Tratamientos}}:& Los siete tipos de aplicador\\
+			\textcolor[rgb]{0,0,1}{\textbf{Unidades Experimental}}:& Usuaria\\
+			\textcolor[rgb]{0,0,1}{\textbf{Unidad Observacional}}:& Cada ojo\\
+			\textcolor[rgb]{0,0,1}{\textbf{V. Respuesta}}:& Valoración de las jueces\\
+			\textcolor[rgb]{0,0,1}{\textbf{No. de replicas}}:& 10\\
+		\end{tabular}
+	\end{center}
+	
+}
+
+\frame{
+	\frametitle{DISEÑOS DE UN FACTOR}
+	Cuando se tiene un solo factor de interés el análisis estadístico tiene como principal objetivo determinar si existen diferencias significativas entre las medias de los tratamientos que para el caso son los mismos niveles del factor.\\
+	Esto de expresa en la siguiente hipótesis estadística:
+	\begin{equation}
+	\boxed{H_{0}: \mu_{1}=\mu_{2}=\ldots=\mu_{k} \qquad vs.  \qquad H_{a}: \mu_{i}\neq \mu_{j} \qquad \forall i\neq j}
+	\end{equation}
+	Está hipótesis se prueba mediante la técnica de \textcolor[rgb]{0,0,1}{\textbf{Análisis de Varianza}}.\\
+	\vspace{0.3cm}
+	\pause
+	\begin{alertblock}{IMPORTANTE}
+		Notese que el Análisis de Varianza solo le permite determinar su las medias son iguales o si existe al menos un par de medias diferentes. Pero no le establece cuales pares de tratamientos son diferentes.
+	\end{alertblock}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Estructura de Datos}
+	
+	\begin{center}
+		\renewcommand{\arraystretch}{1.2}
+		\begin{tabular}{c|cccc|c}\hline
+			\textbf{Tratamientos} & \multicolumn{4}{c|}{\textbf{Observaciones}}& \textbf{Medias}\\ \hline
+			1        & $y_{11}$ & $y_{12}$ & $\cdots$ & $y_{1r}$&$\overline{y}_{1}$\\
+			2        & $y_{21}$ & $y_{22}$ & $\cdots$ & $y_{21}$&$\overline{y}_{2}$\\
+			$\vdots$   & $\vdots$ &          & $\ddots$   & $\vdots$& $\vdots$\\
+			k        & $y_{k1}$ & $y_{k2}$ & $\cdots$ & $y_{kr}$&$\overline{y}_{k}$\\ \hline
+		\end{tabular}
+	\end{center}
+	Modelo estadístico
+	\begin{equation}
+	\boxed{y_{ij}=\mu_{i}+\epsilon_{ij}}
+	\end{equation}
+	donde $i=1,\ldots,k \quad j=1,\ldots, r$ y además:
+	\begin{description}
+		\item [$\mu_{i}$:] Media del \emph{i-esimo} tratamiento
+		\item [$\epsilon_{ij}$:] Error experimental
+	\end{description}
+	
+}
+
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Tabla ANOVA}
+	
+	El análisis de varianza para un diseño de un factor tiene la siguiente estructura:
+	
+	\begin{center}
+		\renewcommand{\arraystretch}{1.3}
+		\begin{tabular}{lcccc}\hline
+			$\mathbf{Fuente}$ & $\mathbf{Grados\ de}$ & $\mathbf{Suma\ de}$ & $\mathbf{Cuadrados}$ &$\mathbf{F_{c}}$\\
+			& $\mathbf{Libertad}$  &$\mathbf{Cuadrados}$&$\mathbf{Medios}$&\\\hline
+			$Tratamientos$ & $k-1$ & $SCTr$ & $CMTr$ & $\frac{CMTr}{CME}$\\
+			$Error$ & $n-k$ & $SCE$ & $CME$ & \\ \hline
+			$Total$ & $n-1$ & $SCT$ &  & \\\hline
+		\end{tabular}
+	\end{center}
+	
+	Adicionalmente siempre se reporta el valor P correspondiente para decidir respecto al nivel de significancia $\alpha$.
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Pruebas de Comparación Múltiple}
+	Cuando del análisis de varianza se concluye que existen diferencias estadísticamente significativas entre las medias de los tratamientos es necesario establecer que pares de ellos presentan diferencia y cuales no. Este es el propósito de las \textcolor[rgb]{0,0,1}{\textit{Pruebas de comparación múltiple}}.\\
+	\vspace{0.5cm}
+	Entre las múltiples pruebas existentes algunas importantes son:
+	\vspace{0.4cm}
+	\begin{itemize}
+		\item Diferencias mínimas significativas (LSD)
+		\item Tukey
+		\item Bonferroni
+		\item Scheffe
+		\item Duncan
+		\item Dunnett (Comparación con un control)
+	\end{itemize}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Representación Gráfica}
+	\framesubtitle{Diagrama de Lineas}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.4]{./Graf2.png}
+		% Graf1.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+	\end{figure}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Representación Gráfica}
+	\framesubtitle{Diagrama de Barras}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.4]{./Graf3.png}
+		% Graf1.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+	\end{figure}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Representación Gráfica}
+	\framesubtitle{Diagrama de Barras de Error}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.4]{./Graf1.png}
+		% Graf1.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+	\end{figure}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Supuestos}
+	El análisis de varianza hace los siguientes supuestos acerca del diseño, que deben ser validados para garantizar la confiabilidad de los resultados, estos son:
+	\vspace{0.2cm}
+	\begin{enumerate}
+		\item Igualdad de varianza en los tratamientos (\emph{Homocedastisidad})\\
+		\textcolor[rgb]{0,0,1}{Prueba de igualdad de varianzas de Bartlett o Levene}
+		\item Independencia de las observaciones\\
+		\textcolor[rgb]{0,0,1}{Diagramas de dispersión, Prueba de Durbin-Watson}
+		\item Las observaciones se distribuyen de acuerdo a una normal\\
+		\textcolor[rgb]{0,0,1}{Prueba de Normalidad}
+	\end{enumerate}
+	\pause
+	\vspace{0.2cm}
+	\textcolor[rgb]{1,0,0}{¿Y si los supuestos no se cumple?}\\
+	\vspace{0.2cm}
+	En general depende de cuales sean los supuestos no satisfechos, pero algunas formas de mejorar los resultados implica transformar la variable respuesta:
+	
+	
+	\begin{itemize}
+		\begin{columns}
+			\begin{column}{3cm}
+				\item $y \rightarrow \log{y}$
+			\end{column}
+			\begin{column}{3cm}
+				\item $y \rightarrow \sqrt{y}$
+			\end{column}
+			\begin{column}{3cm}
+				\item $y \rightarrow y^{\lambda}$
+			\end{column}
+		\end{columns}
+	\end{itemize}
+	
+}
+%-----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Implementación en R}
+En el archivo \textcolor[rgb]{0,0,1}{\texttt{BASE1F.xls}} se presentan los datos de una prueba comparativa de duración de 4 fragancias luego de 6 horas de aplicada en piel sobre dos portadores.
+
+\begin{verbatim}
+head(BASE)
+ID FR  INT
+1  1  3 3.29
+2  2  3 2.62
+3  3  3 2.25
+4  4  3 2.54
+
+str(BASE)
+'data.frame':	150 obs. of  3 variables:
+$ ID  : num  1 2 3 4 5 6 7 8 9 10 ...
+$ FR  : num  3 3 3 3 3 3 3 3 3 3 ...
+$ INT : num  3.29 2.62 2.25 2.54 2.24 2.25 1.29 ...
+\end{verbatim}
+
+\end{frame}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{DISEÑOS DE DOS FACTORES}
+Para el caso de dos factores de interés el análisis estadístico tiene como principal objetivo determinar si existen diferencias significativas entre las medias de los tratamientos que corresponden a las combinaciones de los niveles de ambos factores.\\
+Si $A$ y $B$ son los factores en estudio con $n$ y $m$ niveles respectivamente, entonces  el modelo correspondiente es:
+\begin{equation}
+\boxed{y_{ijk}=\mu+\alpha_{i}+\beta_{j}+\gamma_{ij}+\epsilon_{ijk}}
+\end{equation}
+donde $i=1,\ldots,n \quad j=1,\ldots, m$, $k=1,\ldots, r$.\\
+\vspace{0.4cm}
+Con ello la principal hipótesis estadística de interés es:
+\begin{equation}
+\boxed{H_{0}: \mu_{ij}=\mu_{st} \qquad vs.  \qquad H_{a}: \mu_{ij}\neq \mu_{st} \quad}
+\end{equation}
+donde $\mu_{ij}=\mu+\alpha_{i}+\beta_{j}+\gamma_{ij}$ se llama \emph{Media de celda}.
+}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Estructura de Datos}
+De manera similar por cada factor se puede proba las hipótesis:
+\begin{align*}
+H_{0}&: \alpha_{i}=\alpha_{l} \quad vs.  \quad H_{a}: \alpha_{i}\neq \alpha_{l}\\
+H_{0}&: \beta_{j}=\beta_{t} \quad vs.  \quad H_{a}: \beta_{j}\neq \beta_{t}
+\end{align*}
+\vspace{0.2cm}
+\begin{center}
+	\renewcommand{\arraystretch}{1.2}
+	\begin{tabular}{|c|ccccccc|}\cline{2-8}
+		\multicolumn{1}{c|}{} & \multicolumn{7}{|c|}{\textbf{FACTOR B}}\\ \hline
+		\textbf{FACTOR A} &\multicolumn{3}{c}{1}&$\cdots$& \multicolumn{3}{c|}{m}\\ \hline
+		1        & $y_{111}$ &  $\cdots$ & $y_{11r}$&$\cdots$ &$y_{1m1}$ &  $\cdots$ & $y_{1mr}$\\
+		2        & $y_{211}$ &  $\cdots$ & $y_{211}$&&$y_{2m1}$ &  $\cdots$ & $y_{2mr}$\\
+		$\vdots$   & $\vdots$ &  $\ddots$   & $\vdots$&&$\vdots$&$\ddots$&$\vdots$\\
+		n        & $y_{n11}$ &  $\cdots$ & $y_{n1r}$&$\cdots$ & $y_{nm1}$ &  $\cdots$ & $y_{nmr}$\\ \hline
+	\end{tabular}
+\end{center}
+}
+
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Tabla ANOVA}
+
+El análisis de varianza para este diseño de dos factor tiene la siguiente estructura:
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.3}
+	\begin{tabular}{lcccc}\hline
+		$\mathbf{Fuente}$ & $\mathbf{gl}$ & $\mathbf{SC}$ & $\mathbf{CM}$ &$\mathbf{F_{c}}$\\ \hline
+		$Factor A$ & $n-1$ & $SCA$ & $CMA$ & $\frac{CMA}{CME}$\\
+		$Factor B$ & $m-1$ & $SCB$ & $CMB$ & $\frac{CMB}{CME}$\\
+		$Interaccion$ & $(n-1)(m-1)$ & $SCAB$ & $CMAB$ & $\frac{CMAB}{CME}$\\
+		$Error$ & $nm(r-1)$ & $SCE$ & $CME$ & \\ \hline
+		$Total$ & $nmr-1$ & $SCT$ &  & \\\hline
+	\end{tabular}
+\end{center}
+
+Las pruebas de comparación múltiple aplican igualmente para contrastar los tratamientos y los niveles de cada factor si se detecta diferencia estadística.
+}
+%-----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Implementación en R}
+En el archivo \textcolor[rgb]{0,0,1}{\texttt{BASE2F.xls}} se presentan los datos de una prueba clínica para valorar el stress de los pacientes. Se usan tres formas de controlar el stress y se considera el sexo como otro factor.
+
+\begin{verbatim}
+head(BASE2F)
+Treatment Gender StressReduction
+1   medical      F               1
+2   medical      F               1
+3   medical      F               1
+4   medical      F               1
+5   medical      F               2
+6   medical      F               2
+> str(BASE2F)
+'data.frame':	60 obs. of  3 variables:
+$ Treatment  : Factor w/ 3 levels "medical","mental",..: 1 1 
+$ Gender     : Factor w/ 2 levels "F","M": 1 1 1 1 1 1 1 ...
+$ StressReduction: num  1 1 1 1 2 2 3 3 3 3 ...
+\end{verbatim}
+
+\end{frame}
+%-----------------------------------------------------------------------------------
+ \frame{
+	\frametitle{ANÁLISIS CONJUNTO}
+	Esta es una técnica que permite la evaluación de varios perfiles de un producto con el fin de establecer las mejores combinaciones de los niveles de los factores en estudio en relación a la valoración del producto.\\
+	
+	\pause
+	\vspace{0.5cm}
+	Este análisis permite:
+	\begin{itemize}
+		\item Identificar los factores mas importantes.
+		\item Cuantificar cuales niveles son mejor valorados en cada factor.
+		\item Obtener un puntaje para cada combinación (Perfil) evaluada.
+		\item Clasificar los individuos participantes en grupos con valoraciones similares.
+	\end{itemize}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+		\frametitle{ANÁLISIS CONJUNTO}
+		
+El análisis conjoint (análisis conjunto) es una herramienta que surge de la investigación de mercados a fin de obtener él o los mejores perfiles de atributos que puedan lograr aumentar el impacto favorable en el consumidor o cliente final.
+\begin{alertblock}{Postulado}
+La utilidad (o beneficio sobre el desempeño comercial del producto) de una combinación de atributos puede ser descompuesta en contribuciones especificas de cada atributo y posiblemente de las interacciones entre ellos.
+\end{alertblock}
+\vspace{0.3cm}
+\pause
+Típicamente es una prueba orientada al consumidor final en la cual cada participante puede valorar los perfiles mediante:
+\vspace{0.3cm}
+\begin{itemize}
+	\item Escala de preferencia (Liker)
+	\item Ordenamiento
+\end{itemize}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{ANÁLISIS CONJUNTO}
+	\framesubtitle{Guía de diseño}
+Una guía muy general para el diseño, preparación, desarrollo y análisis se presenta a continuación:
+\begin{enumerate}
+	\item Definición del Problema
+	\begin{itemize}
+		\item Definición del Problema
+		\item Selección de atributos y niveles 
+	\end{itemize}
+	\item Diseño de perfiles
+	\begin{itemize}
+		\item Preparación del diseño ortogonal, perfiles, tarjetas
+		\item Administración de la muestra
+	\end{itemize}
+	\item Desarrollo del análisis
+	\begin{itemize}
+		\item Estimación de la funciones de preferencia (partworth)
+		\item Importancia de atributos
+	\end{itemize}
+	\item Uso de resultados
+	\begin{itemize}
+		\item Segmentación
+		\item Selección de mejores perfiles
+		\item Determinación de precios
+		\item Estimación de canibalización
+	\end{itemize}
+	\item Reporte
+\end{enumerate}
+
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Análisis Estadístico}
+	
+	En el Análisis Conjoint (AC) clásico, se emplea un análisis basado en un Modelo Lineal en el cual los factores (atributos) son la variables explicativas, las cuales se introducen como variables dummy y la variable respuesta es la \emph{Utilidad}. Para tres atributos el modelo más sencillo resulta ser:
+	\begin{equation*}
+	U=\beta_{0}+U_{1}+U_{2}+U_{3}+\epsilon_{i}
+	\end{equation*}
+	
+   \pause
+	donde los términos $U_{i}$ corresponde a la función de utilidad para el atributo i (\textcolor[rgb]{0,0,1}{partworths}).\\
+	
+	Dependiendo de la naturaleza de los atributos a trabajar, los \textcolor[rgb]{0,0,1}{partworths} $U_{i}$ pueden ser:
+	\begin{itemize}
+		\item Los atributos mismos cuando estos son valores en escala continua, esto es $U_{i}=\beta_{i}X_{i}$.
+		\item Agregaciones de variables dummy correspondientes a los niveles del atributo cuando está en escala ordinal o nominal.
+		\[U_{1}=\beta_{11}x_{11}+\beta_{12}x_{12} \qquad \text{Atributo de tres niveles} \]
+	\end{itemize}
+		
+}
+ %-----------------------------------------------------------------------------------
+  \frame{
+ 	\frametitle{Análisis Estadístico}
+  
+ Siendo muy común que los atributos estén en escala ordinal o nominal consideremos dos atributos,\\
+  \begin{center}
+  	$\mathbf{X_{1}}$ (Alto, Medio, Bajo) y $\mathbf{X_{2}}$ (A, B)
+  \end{center}
+  de tal manera que el modelo para este caso será:
+ 	\begin{equation*}
+ U=\beta_{0}+U_{1}+U_{2}+\epsilon_{i}
+ \end{equation*}
+ 
+ \pause
+  \begin{columns}
+  \begin{column}{4cm}
+  	donde
+	  \begin{align*}
+	  U_{1}&=\beta_{11}x_{11}+\beta_{12}x_{12}\\
+	  U_{2}&=\beta_{21}x_{21}
+	  \end{align*}
+  \end{column}
+  \begin{column}{7cm}
+  		\begin{table}
+  			\centering
+  			\begin{tabular}{|c|c|c|c|}	\hline 
+  				$\textcolor[rgb]{0,0,1}{x_{11}}$ & $\textcolor[rgb]{0,0,1}{x_{12}}$ & $\textcolor[rgb]{1,0,0}{x_{21}}$ & Perfil \\ \hline 
+  				\textcolor[rgb]{0,0,1}{1} & 0 & \textcolor[rgb]{1,0,0}{1} & Alto - A \\  \hline 
+  				\textcolor[rgb]{0,0,1}{1} & 0 & 0 & Alto - B \\  \hline 
+  				0 & \textcolor[rgb]{0,0,1}{1} & \textcolor[rgb]{1,0,0}{1} & Medio - A \\ \hline 
+  				0 & \textcolor[rgb]{0,0,1}{1} & 0 & Medio - B \\ \hline 
+  				0 & 0 & \textcolor[rgb]{1,0,0}{1} & Bajo - A \\ \hline 
+  				0 & 0 & 0 & Bajo - B \\ \hline 
+  			\end{tabular} 
+  			%	\caption{}
+  		\end{table}
+  \end{column}
+  \end{columns}
+ 
+ \begin{equation*}
+ 	U=\beta_{0}+\textcolor[rgb]{0,0,1}{\beta_{11}x_{11}+\beta_{12}x_{12}}+\textcolor[rgb]{1,0,0}{\beta_{21}x_{21}}+\epsilon_{i}
+ \end{equation*}
+% una variable dummy para la opción j del atributo i, $\beta_{ij}$ los coeficientes del modelo y $\epsilon_{i}$ el error asociado.
+  
+ }
+%-----------------------------------------------------------------------------------
+ \frame{
+ \frametitle{Ejemplo: Inmuebles}
+ \begin{center}
+ \begin{tabular}[c]{lcc}\hline
+ \textbf{FACTOR} & \textbf{No. de Niveles} & \textbf{Niveles}\\ \hline
+ Habitaciones & 2 & 2 y 3\\
+ Ba\~nos & 2 & 1 y 2\\
+ Garaje & 2 & 1 y 2\\ \hline
+ \end{tabular}
+ \end{center}
+ Diseño: Factorial Completo $2^{3}$.     Total perfiles: 8\\
+ Modo de Evaluación: Ordenamiento
+ \pause
+ \begin{center}
+ \begin{tabular}{cccc}\hline
+ No.&\textbf{HABITACIÓN} & \textbf{BAÑO} & \textbf{GARAJE}\\ \hline
+ 1&2 & 1 & 1\\
+ 2&2 & 1 & 2\\
+ 3&2 & 2 & 1\\
+ 4&2 & 2 & 2\\
+ 5&3 & 1 & 1\\
+ 6&3 & 1 & 2\\
+ 7&3 & 2 & 1\\
+ 8&3 & 2 & 2\\ \hline
+ \end{tabular}
+ \end{center}
+ 
+ }
+ 
+%-----------------------------------------------------------------------------------
+  \begin{frame}[fragile]
+  \frametitle{Implementación en R}
+\begin{verbatim}
+
+Residuals:
+Min      1Q  Median      3Q     Max 
+-5,3409 -1,4242  0,3409  1,4242  5,3409 
+
+Coefficients:
+Estimate Std. Error t value Pr(>|t|)    
+(Intercept)              4,50000    0,07958  56,548   <2e-16 ***
+factor(x$Garajes)1       0,11742    0,07958   1,476    0,141    
+factor(x$Baños)1        -0,99242    0,07958 -12,471   <2e-16 ***
+factor(x$Habitaciones)1 -0,96591    0,07958 -12,138   <2e-16 ***
+---
+Signif. codes:  0 ?***? 0,001 ?**? 0,01 ?*? 0,05 ?.? 0,1 ? ? 1
+
+Residual standard error: 1,829 on 524 degrees of freedom
+Multiple R-squared:  0,3679,	Adjusted R-squared:  0,3643 
+F-statistic: 101,7 on 3 and 524 DF,  p-value: < 2,2e-16
+\end{verbatim}  
+
+  
+\end{frame}
+%-----------------------------------------------------------------------------------
+  \begin{frame}[fragile]
+\frametitle{Implementación en R}
+\begin{verbatim}
+
+[1] "Part worths (utilities) of levels 
+(model parameters for whole sample):"
+levnms    utls
+1 intercept     4,5
+2  1 Garaje  0,1174
+3 2 Garajes -0,1174
+4    1 Baño -0,9924
+5   2 Baños  0,9924
+6    2 Hab. -0,9659
+7    3 Hab.  0,9659
+[1] "Average importance of factors (attributes):"
+[1] 26,07 34,91 39,03
+[1] Sum of average importance:  100,01
+\end{verbatim}  
+
+\end{frame}
+%-----------------------------------------------------------------------------------
+  \frame{
+  \frametitle{Implementación en R - Gráficas}
+  \begin{figure}
+  	\centering
+  	\includegraphics[scale=0.3]{Importancia_ATRB} \qquad
+  	\includegraphics[scale=0.3]{Hab}
+  	\label{fig:importanciaatrb}
+  \end{figure}
+  
+ }
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Implementación en R - Gráficas}
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.3]{Banos} \qquad
+		\includegraphics[scale=0.3]{Garaje}
+		\label{fig:importanciaatrb}
+	\end{figure}
+	
+}
+ %-----------------------------------------------------------------------------------
+\frame{
+\frametitle{DISEÑO PARA MEDIDAS REPETIDAS}
+Un diseño en el cual varios individuos son medidos o evaluados varias veces en el tiempo en varios tratamientos se denomina \textcolor[rgb]{0,0,1}{\emph{estudio longitudinal}} o \emph{estudio panel}. \\
+Este tipo de análisis permite establecer:
+\begin{itemize}
+\item Evolución o cambio de la variable respuesta en el tiempo
+\item Interacción de los factores con el tiempo
+\item Efecto de los tratamientos
+\end{itemize}
+
+En el caso de un factor con $s$ niveles, $t$ medidas en el tiempo, $n_{h}$ individuos en el grupo $h$, se tiene el modelo:
+\begin{equation}
+\boxed{y_{hij}=\mu+\alpha_{h}+\beta_{j}+(\alpha \beta)_{hj}+\pi_{i(h)}+\epsilon_{hij}}
+\end{equation}
+donde $i=1,\ldots,n_{h}$, $j=1, \ldots, t$ $h=1,\ldots, s$.\\
+
+}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{DISEÑO PARA MEDIDAS REPETIDAS}
+Con ello las hipótesis estadísticas de interés son:\\
+\vspace{0.4cm}
+
+\textcolor[rgb]{0,0,1}{Grupo (Tratamientos)}
+\begin{equation}
+\boxed{H_{0}: \alpha_{h}=\alpha_{k} \qquad vs.  \qquad H_{a}: \alpha_{h}\neq \alpha_{k} \quad}
+\end{equation}
+\vspace{0.1cm}
+
+\textcolor[rgb]{0,0,1}{Tiempo}
+\begin{equation}
+\boxed{H_{0}: \beta_{j}=\beta_{l} \qquad vs.  \qquad H_{a}: \beta_{j}\neq \beta_{l} \quad}
+\end{equation}
+\vspace{0.1cm}
+
+\textcolor[rgb]{0,0,1}{Interacción Grupo $\times$ Tiempo}
+\begin{equation}
+\boxed{H_{0}: \mu_{h\cdot j}=\mu_{k\cdot l} \qquad vs.  \qquad H_{a}: \mu_{h\cdot j}\neq \mu_{k\cdot l} \quad}
+\end{equation}
+
+donde $\mu_{h\cdot j}=\mu+\alpha_{h}+\beta_{j}+(\alpha \beta)_{hj}$ con $h \neq k$ y $j \neq l$.\\
+}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Supuestos del Modelo}
+Este tipo de análisis de varianza considera varios supuestos como son:
+\vspace{0.3cm}
+\begin{itemize}
+\item Los errores se distribuyen de acuerdo a una normal \[\epsilon_{hij} \sim N(0,\sigma_{\epsilon}^{2})\]
+%\vspace{0.1cm}
+\item Los individuos se consideran como un factor aleatorio cuya variabilidad se reúne en el término $\pi_{i(h)}$ el cual se asume cumple \[\pi_{i(h)} \sim N(0,\sigma_{\pi}^{2})\]
+%\vspace{0.1cm}
+\item Los errores y el efecto de los individuos no están correlacionados \[cov(\pi_{i(h)},\epsilon_{hij})=0\]
+%\vspace{0.1cm}
+\item La homogeneidad de varianzas en los tiempos de medida este modelo se denomina \textcolor[rgb]{0,0,1}{Esfericidad}.
+\end{itemize}
+
+}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Estructura de Datos}
+Típicamente los datos para un ANOVA de medidas repetidas se disponen de la siguiente manera:
+\vspace{0.2cm}
+\begin{center}
+\begin{tabular}{c|c|ccc}\hline
+	Sujeto & Tratamiento & $Y_{1}$ & $\ldots$ & $Y_{t}$\\\hline
+	1 & 1 & $y_{111}$ & $\ldots$ & $y_{11t}$\\
+	2 & 1 & $y_{121}$ & $\ldots$ & $y_{12t}$\\
+	$\vdots$ & $\vdots$ & $\vdots$ &  & $\vdots$\\
+	$n_{1}$ & 1 & $y_{1n_{1}1}$ & $\ldots$ & $y_{1n_{1}t}$\\\hline
+	$\vdots$ & $\vdots$ & $\vdots$ &  & $\vdots$\\ \hline
+	1 & s & $y_{s11}$ & $\ldots$ & $y_{s1t}$\\
+	$\vdots$ & $\vdots$ & $\vdots$ &  & $\vdots$\\
+	$n_{s}$ & s & $y_{sn_{s}1}$ & $\ldots$ & $y_{sn_{s}t}$\\\hline
+\end{tabular}
+\end{center}
+
+}
+
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Tabla ANOVA}
+
+El análisis de varianza para este diseño de un factor con medidas  tiene la siguiente estructura:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lcccc}\hline
+	$\mathbf{Fuente}$ & $\mathbf{gl}$ & $\mathbf{SC}$ & $\mathbf{CM}$ &$\mathbf{F_{c}}$\\ \hline
+	$Tratamientos$ & $s-1$ & $SCG$ & $CMG$ & $\frac{CMG}{CME}$\\
+	$Individios(Trat.)$ & $n-s$ & $SCI_{G}$ & $CMI_{G}$ & \\
+	$Tiempo$ & $t-1$ & $SCT$ & $CMT$ & $\frac{CMT}{CME}$\\
+	$Trat.\times Tiempo$ & $(s-1)(t-1)$ & $SCGT$ & $CMGT$ & $\frac{CMGT}{CME}$\\
+	$Error$ & $(n-s)(t-1)$ & $SCE$ & $CME$ & \\ \hline
+\end{tabular}
+\end{center}
+
+Las pruebas de comparación múltiple aplican igualmente para contrastar los tratamientos.
+}
+%-----------------------------------------------------------------------------------
+\section{ANÁLISIS MULTIVARIADO DE DATOS EN SENSORIAL}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Naturaleza multivariada en Sensorial}
+	La descripción estadística simultanea de cualquier situación mediante más de una variable corresponde en general a un análisis multivariado.\\
+	En análisis sensorial esto se presenta con mucha frecuencia pues un producto se suele describir con múltiples atributos, los cuales estón típicamente correlacionados entre si.\\
+	\vspace{0.3cm}
+	Algunas técnicas multivariadas son:
+	\begin{itemize}
+		\item Análisis de componentes principales
+		\item Análisis de correspondencias simples y múltiples
+		\item Análisis cluster
+		\item Análisis discriminante
+		\item Escalamiento Multidimensional
+		\item Regresión múltiple
+		\item ...
+	\end{itemize}
+	
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Elementos Básicos de Análisis Multivariado}
+	\begin{itemize}
+		\item Vector de medias \textcolor[rgb]{0,0,1}{\texttt{M=sapply(DT,mean)}} \\
+		\[\mathbf{\mu}=(\mu_{1},\mu_{2},\mu_{3})\] 
+		\item Matriz de varianzas-covarianzas \textcolor[rgb]{0,0,1}{\texttt{cv=cov(DT)}} \\
+		\[\mathbf{\Sigma}=\begin{pmatrix}
+		\sigma_{1}^{2} & \sigma_{12} & \sigma_{13} \\
+		\sigma_{12} & \sigma_{2}^{2} & \sigma_{23} \\
+		\sigma_{13} & \sigma_{23} & \sigma_{3}^{2}
+		\end{pmatrix}
+		\]
+		\item Matriz de correlaciones \textcolor[rgb]{0,0,1}{\texttt{cr=cor(DT)}} \\
+		\[\mathbf{\rho}=\begin{pmatrix}
+		\rho_{1} & \rho_{12} & \rho_{13} \\
+		\rho_{12} & \rho_{2} & \rho_{23} \\
+		\rho_{13} & \rho_{23} & \rho_{3}
+		\end{pmatrix}\]
+	\end{itemize}
+	
+}
+%-----------------------------------------------------------------------------------
+\subsection{Análisis de Componentes Principales}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Análisis de Componentes Principales ACP}
+	El ACP es una técnica de reducción de dimensión que permite crear nuevas variables sintéticas que logren reunir la mayor cantidad de la información original (\emph{Varianza}) a fin de  lograr representaciones gráficas y análisis estadísticos más sencillos.
+	
+	\begin{columns}
+		\begin{column}{5cm}
+			\begin{figure}[h]
+				\centering
+				\includegraphics[scale=0.15,keepaspectratio=true]{./pca.png}
+				% pca.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+			\end{figure}
+		\end{column}
+		\begin{column}{4.5cm}
+			El conjunto de variables originales tiene la caracterástica de ser correlacionadas, en tanto que las componentes principales son independientes.
+		\end{column}
+	\end{columns}
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Naturaleza de las variables}
+	El Análisis de Componentes Principales (ACP) es en esencia una técnica matemática que en principio no hace ningún tipo se supuesto acerca de las variables, las cuales en general son de tipo cuantitativo, típicamente en escalas continuas.\\
+	De acuerdo al interés de las variables en el ACP estas pueden ser:\\
+	\begin{itemize}
+		\item \textcolor[rgb]{0,0,1}{Activas}: Son las variables a partir de las cuales se construye todo al análisis y cuya dimensión se desea reducir.
+		\vspace{0.3cm}
+		\item \textcolor[rgb]{0,0,1}{Suplementarias}:Son variables cuantitativas o cualitativas que no aportan información en la construcción de las componentes pero sobre las cuales si hay interés de visualizar en los planos factoriales a fin de establecer asociaciones.
+	\end{itemize}
+	Aunque menos frecuente, algunos individuos también puede incluirse como \textcolor[rgb]{0,0,1}{Suplementarios} con una finalidad similar al caso de las variables.
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Construcción de las Componentes Principales}
+	Las direcciones en el espacio en las cuales se presenta las mayor variación de los datos se denominan \textcolor[rgb]{0,0,1}{\emph{Componentes Principales}} y están dados por una combinación de todas las variables originales así:
+	\begin{align*}
+	F_{1}&=\alpha_{11}X_{1}+\alpha_{12}X_{2}+\ldots+\alpha_{1p}X_{p}\\
+	F_{2}&=\alpha_{21}X_{1}+\alpha_{22}X_{2}+\ldots+\alpha_{2p}X_{p}\\
+	&\vdots\\
+	F_{k}&=\alpha_{k1}X_{1}+\alpha_{k2}X_{2}+\ldots+\alpha_{kp}X_{p}
+	\end{align*}
+	Donde los coeficientes $\alpha_{ij}$ describen la contribución porcentual de la variable $j$ en el factor $i$ y se denomina \textcolor[rgb]{0,0,1}{\emph{Cargas factoriales}} o simplemente \textcolor[rgb]{0,0,1}{\emph{Contribuciones}}.
+}
+%-----------------------------------------------------------------------------------
+\frame{
+	\frametitle{Elementos importantes del ACP}
+	Tipicamente, las salidas de un ACP comprenden:
+	\begin{itemize}
+		\item \textcolor[rgb]{0,0,1}{Valores propios}:Brindan la información de cuanta varianza esta explicada en cada componente.
+		\vspace{0.2cm}
+		\item \textcolor[rgb]{0,0,1}{Contribuciones}: Describen la contribución porcentual de la variable $j$ en el factor $i$.
+		\vspace{0.2cm}
+		\item \textcolor[rgb]{0,0,1}{Matriz de correlaciones}: Cuantifica el grado de asociación entre las variables analizadas.
+		\vspace{0.2cm}
+		\item \textcolor[rgb]{0,0,1}{Coordenadas}: Tanto para variables como para individuos se puede obtener sus coordenadas en cada componente, de tal manera que se pueden representar gráficamente.
+		\vspace{0.2cm}
+		\item \textcolor[rgb]{0,0,1}{Gráficas factoriales}: A partir de las dos primeras componentes se pueden hacer representaciones bidimensionales.
+	\end{itemize}
+	% ($\cos^{2}{\theta}$)
+}
+%-----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Implementación en R}
+Un paquete util para la realización de Análisis Multivariados es \textcolor[rgb]{0,0,1}{\texttt{factominer}}, en el cual se tiene una base de datos de vinos llamada \texttt{wine}.
+\begin{verbatim}
+library(FactoMineR)
+data(wine)
+str(wine)
+'data.frame':	21 obs. of  31 variables:
+$ Label: Factor w/ 3 levels "Saumur","Bourgueuil",..: 1 1 ...
+$ Soil : Factor w/ 4 levels "Reference","Env1",..: 2 2  ...
+$ Odor.Intensity.before.shaking: num  3.07 2.96 2.86 ...
+$ Aroma.quality.before.shaking : num  3 2.82 2.93 2.59 ...
+$ Fruity.before.shaking        : num  2.71 2.38 2.56 2.42 ...
+.
+.
+$ Harmony                      : num  3.14 2.96 3.14 2.04 ...
+$ Overall.quality              : num  3.39 3.21 3.54 2.46 ...
+$ Typical                      : num  3.25 3.04 3.18 2.25 ...
+\end{verbatim}
+
+\end{frame}
+% -----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Implementación en R}
+De las 29 variables numéricas vamos a extraer las variables correspondientes al gusto.
+\begin{verbatim}
+DT_Sabor=wine[,c(1,2,21,22,23,24,25,26,27,28,29)]
+names(DT_Sabor)=c('Marca','Suelo','Int.Inicial','Acidez',
+'Astringencia','Alcohol','Balance','Suavidad','Amargor',
+'Intensidad','Armonia')
+str(DT_Sabor)
+
+data.frame':	21 obs. of  11 variables:
+$ Marca       : Factor w/ 3 levels "Saumur","Bourgueuil",..
+$ Suelo       : Factor w/ 4 levels "Reference","Env1",..
+$ Int.Inicial : num  2.96 3.04 3.22 2.7 3.46 ...
+$ Acidez      : num  2.11 2.11 2.18 3.18 2.57 ...
+$ Astringencia: num  2.43 2.18 2.25 2.19 2.54 ...
+$ Alcohol     : num  2.5 2.65 2.64 2.5 2.79 ...
+$ Balance     : num  3.25 2.93 3.32 2.33 3.46 ...
+\end{verbatim}
+\end{frame}
+%-----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Implementación en R}
+
+\begin{verbatim}
+sw_pca=PCA(DT_Sabor,ncp=5,quali.sup=c(1,2),graph=T)
+
+Eigenvalues           Dim.1   Dim.2   Dim.3   Dim.4   Dim.5
+Variance               5.642   1.791   0.674   0.351   0.313
+% of var.             62.689  19.900   7.490   3.895   3.475
+Cumulative % of var.  62.689  82.589  90.079  93.973  97.448 
+
+$contrib       Dim.1      Dim.2      Dim.3     
+Int.Inicial  15.565865  0.3861023  2.0953619  
+Acidez        1.148341 26.6354370 67.3482364  
+Astringencia 10.491302 10.3152025  4.0961623 
+Alcohol      10.562720  8.1309186  0.9823138 
+Balance      12.575911 10.0642661  4.0839002  
+Suavidad     14.353862  8.1594278  1.6300898  
+Amargor       2.517722 32.4497430 17.7635511 
+Intensidad   16.547731  0.7569382  1.6848031  
+Armonia      16.236547  3.1019645  0.3155813  
+\end{verbatim}
+\end{frame}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Representación Gráfica}
+\framesubtitle{Variables}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5,keepaspectratio=true]{./PGF_var.png}
+\end{figure}
+
+}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Representación Gráfica}
+\framesubtitle{Individuos}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5,keepaspectratio=true]{./PGF_ind.png}
+\end{figure}
+}
+%-----------------------------------------------------------------------------------
+% \subsection{Análisis de Correspondencias}
+% \frame{\textbf{\textcolor[rgb]{0,0,1}{\large{\insertsubsection}}}}
+% %\frame{\sectionpage}
+% %-----------------------------------------------------------------------------------
+%  \frame{
+%  \frametitle{}
+%  
+% }
+% %-----------------------------------------------------------------------------------
+%  \frame{
+%  \frametitle{}
+%  
+% }
+% %-----------------------------------------------------------------------------------
+%  \frame{
+%  \frametitle{}
+%  
+% }
+% %-----------------------------------------------------------------------------------
+%  \frame{
+%  \frametitle{}
+%  
+% }
+%-----------------------------------------------------------------------------------
+\subsection{Análisis Factorial Multiple}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Análisis de Factorial Múltiple}
+El AFM es una técnica de reducción de dimensión que mediante la construcción de nuevas variables denominadas factores permite obtener identificar la estructura latente de las variables.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7,keepaspectratio=true]{./AFM.png}
+% AFM.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+\end{figure}
+
+}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Análisis de Factorial Múltiple}
+\textbf{Objetivo del AFM}: Describir la relación de covariación entre múltiples variables en términos de pocas variables no observables llamadas \emph{Factores}.\\
+
+El AFM puede ser de dos tipos dependiendo la finalidad con la cual se realice:
+
+\begin{itemize}
+\item \textcolor[rgb]{0,0,1}{Exploratorio}: En este caso no se tiene información acerca de la estructura del problema y se quiere precisamente establecer que variables latentes (factores) están presentes.
+\vspace{0.3cm}
+\item \textcolor[rgb]{0,0,1}{Confirmatorio}: Bajo una estructura o agrupamiento de variables manifiestas en factores, el AFM provee una confirmación o negación de la misma.
+\end{itemize}
+
+
+
+}
+%-----------------------------------------------------------------------------------
+\frame{
+\frametitle{Modelo en el AFM}
+A diferencia del ACP, el AFM considera un modelo estadístico de describe las variable de estudio, este es:
+\begin{equation}
+\boxed{\mathbf{X}=\Lambda \mathbf{F}+\mathbf{\epsilon}}
+\end{equation}
+donde:
+\begin{itemize}
+\item $\mathbf{X}$ es la matriz de variables observadas.
+\item $\Lambda$ es la matriz de cargas factoriales.
+\item $\mathbf{F}$ es el vector de factores.
+\item $\mathbf{\epsilon}$ es el vector de errores.
+\end{itemize}
+\begin{align*}
+X_{1}&=\lambda_{11}f_{1}+\lambda_{12}f_{2}+\ldots+\lambda_{p1}f_{k}+\epsilon_{1}\\
+&\vdots\\
+X_{p}&=\lambda_{p1}f_{1}+\lambda_{p2}f_{2}+\ldots+\lambda_{pk}f_{k}+\epsilon_{p}
+\end{align*}
+
+}
+%-----------------------------------------------------------------------------------
+%  \frame{
+%  \frametitle{Comunalidad}
+%  En el AFM lo que se logra es separar la covarianza de las variables manifiestas en una parte comón (\emph{Comunalidad}) y otra parte especifica (\emph{Especificidad}).
+% }
+%-----------------------------------------------------------------------------------
+%  \frame{
+%  \frametitle{}
+%  
+% }
+% %-----------------------------------------------------------------------------------
+%  \frame{
+%  \frametitle{}
+%  
+% }
+% %-----------------------------------------------------------------------------------
+%  \frame{
+%  \frametitle{}
+%  
+% }
+%-----------------------------------------------------------------------------------
+\begin{frame}[fragile]
+\frametitle{Implementación en R}
+\begin{verbatim}
+w_mfa = MFA(wine, group=c(2,5,3,10,9,2), 
+type=c("n",rep("s",5)),ncp=5,
+name.group=c("origin","odor","visual",
+"odor.after.shaking","taste","overall"), 
+num.group.sup=c(1,6))
+
+\end{verbatim}
+
+\end{frame}
+%-----------------------------------------------------------------------------------
+% \frame{
+% \frametitle{Titulo}
+% 
+% 
+% \begin{columns}
+% \begin{column}{6cm}
+% a
+% \end{column}
+% \begin{column}{6cm}
+% s
+% \end{column}
+% \end{columns}
+% }
+\frame{
+\title{GRACIAS POR SU ATENCIÓN}
+\vspace{0.5cm}
+}
+\frame{\titlepage}
+
+
+\end{document}

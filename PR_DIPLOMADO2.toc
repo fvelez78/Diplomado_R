@@ -1,0 +1,12 @@
+\select@language {spanish}
+\beamer@sectionintoc {1}{INTRODUCCI\'ON AL AN\'ALISIS DE DATOS}{7}{0}{1}
+\beamer@sectionintoc {2}{INTRODUCCI\'ON A R Y RStudio}{12}{0}{2}
+\beamer@subsectionintoc {2}{1}{Aspectos generales de R y RStudio}{13}{0}{2}
+\beamer@subsectionintoc {2}{2}{Introducci\'on a R}{24}{0}{2}
+\beamer@sectionintoc {3}{AN\'ALISIS UNIVARIADO DE DATOS EN SENSORIAL}{42}{0}{3}
+\beamer@subsectionintoc {3}{1}{Inferencia Estad\IeC {\'\i }stica}{44}{0}{3}
+\beamer@subsectionintoc {3}{2}{Pruebas Discriminantes}{68}{0}{3}
+\beamer@subsectionintoc {3}{3}{Dise\~no y An\'alisis de Experimentos}{79}{0}{3}
+\beamer@sectionintoc {4}{AN\'ALISIS MULTIVARIADO DE DATOS EN SENSORIAL}{119}{0}{4}
+\beamer@subsectionintoc {4}{1}{An\'alisis de Componentes Principales}{122}{0}{4}
+\beamer@subsectionintoc {4}{2}{An\'alisis Factorial Multiple}{132}{0}{4}
